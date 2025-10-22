@@ -1,0 +1,23 @@
+{
+  "name": "trabalho-final-pos-automacao-web",
+  "version": "1.0.0",
+  "description": "Projeto Final para a disciplina de Automação de Testes de Software para a Camada de Interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeffersonBessa/trabalho-final-pos-automacao-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeffersonBessa/trabalho-final-pos-automacao-web/issues"
+  },
+  "homepage": "https://github.com/JeffersonBessa/trabalho-final-pos-automacao-web#readme",
+  "devDependencies": {
+    "cypress": "^15.5.0"
+  }
+}
