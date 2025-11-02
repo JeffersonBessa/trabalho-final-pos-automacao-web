@@ -9,7 +9,7 @@ describe('Test Case 2', () => {
             email: 'jefferson.qa01.test@example.com',
             password: '12345'
         };
-
+        
         HomePage.visitHomePage();
         HomePage.getLogo.should('be.visible');
         HomePage.goToSignupLogin();

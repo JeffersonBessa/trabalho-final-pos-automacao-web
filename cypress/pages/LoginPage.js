@@ -9,6 +9,7 @@ class LoginPage {
     loginPasswordSelector = 'input[data-qa="login-password"]';
     loginButtonSelector = 'button[data-qa="login-button"]';
     loginToAccountSelector = 'h2:contains("Login to your account")';
+    newUserSignupSelector = 'h2:contains("New User Signup!")';
     loginErrorSelector = 'p[style*="color: red"]';
     emailExistsErrorSelector = 'p[style*="color: red"]';
 
@@ -53,7 +54,7 @@ class LoginPage {
         return cy.get(this.loginToAccountSelector).should('be.visible');
     }
 
-    get verifySignupVisible() {
+    verifySignupVisible() {
         return cy.get(this.newUserSignupSelector).should('be.visible');
     }
 

@@ -7,7 +7,7 @@ describe('Test Case 3', () => {
             email: 'invalid_email@example.com',
             password: 'wrongPassword'
         };
-
+        
         HomePage.visitHomePage();
         HomePage.getLogo.should('be.visible');
         HomePage.goToSignupLogin();
