@@ -8,6 +8,9 @@ class LoginPage {
     loginEmailSelector = 'input[data-qa="login-email"]';
     loginPasswordSelector = 'input[data-qa="login-password"]';
     loginButtonSelector = 'button[data-qa="login-button"]';
+    loginToAccountSelector = 'h2:contains("Login to your account")';
+    loginErrorSelector = 'p[style*="color: red"]';
+    emailExistsErrorSelector = 'p[style*="color: red"]';
 
     // Actions
     get signupName() {
@@ -44,6 +47,22 @@ class LoginPage {
         this.loginEmail.type(email);
         this.loginPassword.type(password);
         this.loginButton.click();
+    }
+
+    verifyLoginVisible() {
+        return cy.get(this.loginToAccountSelector).should('be.visible');
+    }
+
+    get verifySignupVisible() {
+        return cy.get(this.newUserSignupSelector).should('be.visible');
+    }
+
+    verifyLoginError() {
+        cy.get(this.loginErrorSelector).should('contain', 'Your email or password is incorrect!');
+    }
+
+    verifyEmailAlreadyExistsError() {
+        cy.get(this.emailExistsErrorSelector).should('contain', 'Email Address already exist!');
     }
 }
 
