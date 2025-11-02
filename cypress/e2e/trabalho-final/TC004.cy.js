@@ -3,23 +3,22 @@ import LoginPage from "../../pages/LoginPage";
 import SignupPage from "../../pages/SignupPage";
 import AccountPage from "../../pages/AccountPage";
 
-describe('Test Case 1', () => {
-    it('Register User', () => {
-        HomePage.visitHomePage();
-        HomePage.getLogo.should('be.visible');
-        cy.title().should('include', 'Automation Exercise');
-        
-        HomePage.goToSignupLogin();
-
+describe('Test Case 4', () => {
+    it('Logout User', () => {
         const user = {
             name: 'Jefferson QA',
             email: `jefferson.qa+${Date.now()}@example.com`,
             password: 'Pass@1234'
         };
 
+        HomePage.visitHomePage();
+        HomePage.getLogo.should('be.visible');
+        
+        HomePage.goToSignupLogin();
         LoginPage.signup(user.name, user.email);
+        
         SignupPage.fillInForm(
-            'password123',
+            user.password,
             '1',
             'January',
             '1990',
@@ -31,10 +30,13 @@ describe('Test Case 1', () => {
             'Mumbai',
             '400001',
             '9876543210'
-        )
+        );
         SignupPage.submitForm();
         AccountPage.verifyAccountCreated();
         AccountPage.clickContinue();
-        cy.get('li > a > b').should('have.text', user.name);
-    })
-})
+        AccountPage.verifyLoggedInAs(user.name);
+        
+        AccountPage.logout();
+        LoginPage.verifyLoginVisible();
+    });
+});
