@@ -1,4 +1,5 @@
 class ContactUsPage {
+    
     // Selectors
     getInTouchSelector = 'h2:contains("Get In Touch")';
     nameInputSelector = 'input[data-qa="name"]';

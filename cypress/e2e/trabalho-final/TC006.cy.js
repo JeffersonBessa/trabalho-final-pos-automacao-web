@@ -7,7 +7,7 @@ describe('Test Case 6', () => {
             name: 'Jefferson QA',
             email: 'jefferson.qa@example.com',
             subject: 'Test Subject',
-            message: 'This is a test message for an automation testing.'
+            message: 'This is a test message for an automation test'
         };
 
         HomePage.visitHomePage();
