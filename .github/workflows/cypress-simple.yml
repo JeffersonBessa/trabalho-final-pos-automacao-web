@@ -1,0 +1,61 @@
+name: Cypress Tests - Simple
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          headed: false
+
+      - name: Merge Mochawesome reports
+        if: always()
+        run: |
+          mkdir -p cypress/reports/mochawesome
+          npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/report.json || true
+
+      - name: Generate HTML report
+        if: always()
+        run: |
+          npx marge cypress/reports/mochawesome/report.json -f report -o cypress/reports/mochawesome || true
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            cypress/reports/
+            cypress/screenshots/
+            cypress/videos/
+          retention-days: 30
+
+      - name: Test Summary
+        if: always()
+        run: |
+          echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tests completed" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Reports generated in artifacts" >> $GITHUB_STEP_SUMMARY

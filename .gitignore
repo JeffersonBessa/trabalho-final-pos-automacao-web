@@ -1,1 +1,12 @@
 /node_modules
+
+# Cypress
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+
+# Mochawesome Reports
+mochawesome-report/
+*.html
+*.json
